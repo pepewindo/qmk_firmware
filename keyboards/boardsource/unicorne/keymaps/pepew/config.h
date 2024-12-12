@@ -13,3 +13,6 @@
 #define SPLIT_OLED_ENABLE
 #define OLED_FADE_OUT
 #define OLED_TIMEOUT 10000
+
+// Tapping Term for cool people
+#define TAPPING_TERM 400
