@@ -241,7 +241,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             KC_LGUI,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_END,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_LALT, LT(3,KC_BSPC), KC_SPC,     KC_ENT, KC_RALT, OSM(MOD_RSFT)
+                                           KC_LALT, LT(3,KC_BSPC), KC_SPC,     KC_ENT, OSM(MOD_RSFT), KC_RALT
                                             //`--------------------------'  `--------------------------'
         ),
       
@@ -277,7 +277,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU, KC_WBAK, KC_WFWD,                         KC_N,   KC_P1,   KC_P2,   KC_P3,  KC_EQL, KC_CALC, 
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                 KC_INS, KC_TRNS, KC_TRNS,    KC_TRNS,   KC_P0, KC_TRNS
+                                                 KC_INS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS,   KC_P0
                                             //`--------------------------'  `--------------------------'
         )
 };
