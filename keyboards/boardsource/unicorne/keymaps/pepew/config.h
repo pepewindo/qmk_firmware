@@ -16,5 +16,7 @@
 
 // Tapping Term for cool people
 #define TAPPING_TERM 300
-#define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
+//#define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_INVERT_ON_SHIFT
 #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
