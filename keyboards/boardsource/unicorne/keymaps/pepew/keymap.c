@@ -202,6 +202,49 @@ enum custom_keycodes {
     QMK_GC,
 };
 
+enum ergol_keycodes {
+    EL_Q = KC_Q,
+    EL_C = KC_W,
+    EL_O = KC_E,
+    EL_P = KC_R,
+    EL_W = KC_T,
+    EL_J = KC_Y,
+    EL_M = KC_U,
+    EL_D = KC_I,
+    EL_1DK = KC_O,
+    EL_Y = KC_P,
+    EL_A = KC_A,
+    EL_S = KC_S,
+    EL_E = KC_D,
+    EL_N = KC_F,
+    EL_F = KC_G,
+    EL_L = KC_H,
+    EL_R = KC_J,
+    EL_T = KC_K,
+    EL_I = KC_L,
+    EL_U = KC_SCLN,
+    EL_Z = KC_Z,
+    EL_X = KC_X,
+    EL_MINS = KC_C,
+    EL_V = KC_V,
+    EL_B = KC_B,
+    EL_DOT = KC_N,
+    EL_H = KC_M,
+    EL_G = KC_COMM,
+    EL_COMM = KC_DOT,
+    EL_K = KC_SLSH,
+    EL_1 = KC_1,
+    EL_2 = KC_2,
+    EL_3 = KC_3,
+    EL_4 = KC_4,
+    EL_5 = KC_5,
+    EL_6 = KC_6,
+    EL_7 = KC_7,
+    EL_8 = KC_8,
+    EL_9 = KC_9,
+    EL_0 = KC_0
+};
+
 // french quotes with embedded non-breaking spaces
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -227,6 +270,68 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, without shifting.
+        case EL_1DK:
+        case EL_1 ... EL_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_RIGHT:
+        case KC_LEFT:
+        case EL_MINS:
+            return true;
+
+        // EL_V continues Caps Word, with shift applied.
+        // ALTGR(EL_V) continues Caps Word, without shifting.
+        case EL_V:
+            // Apply shift if altgr is not activated.
+            if (!(get_mods() & MOD_BIT(KC_RALT))) {
+                add_weak_mods(MOD_BIT(KC_LSFT));
+            }
+            return true;
+
+        // Keycodes that continue Caps Word, with shift applied.
+        case EL_A:
+        case EL_B:
+        case EL_C:
+        case EL_D:
+        case EL_E:
+        case EL_F:
+        case EL_G:
+        case EL_H:
+        case EL_I:
+        case EL_J:
+        case EL_K:
+        case EL_L:
+        case EL_M:
+        case EL_N:
+        case EL_O:
+        case EL_P:
+        case EL_Q:
+        case EL_R:
+        case EL_S:
+        case EL_T:
+        case EL_U:
+        case EL_W:
+        case EL_X:
+        case EL_Y:
+        case EL_Z:
+            if (get_mods() & MOD_BIT(KC_RALT)) { // Stop on altgr symbols
+                return false;
+            }
+            add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift
+            return true;
+
+        // Stop on other keycodes
+        default:
+            return false;
+    }
+}
+
+
+/*
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -255,6 +360,7 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;  // Deactivate Caps Word.
     }
 }
+*/
 
 /* THIS FILE WAS GENERATED!
  *
