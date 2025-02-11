@@ -286,6 +286,12 @@ bool caps_word_press_user(uint16_t keycode) {
         // EL_V continues Caps Word, with shift applied.
         // ALTGR(EL_V) continues Caps Word, without shifting.
         case EL_V:
+        case EL_A:
+        case EL_E:
+        case EL_S:
+        case EL_N:
+        case EL_P:
+        case EL_W:
             // Apply shift if altgr is not activated.
             if (!(get_mods() & MOD_BIT(KC_RALT))) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
@@ -293,11 +299,9 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
 
         // Keycodes that continue Caps Word, with shift applied.
-        case EL_A:
         case EL_B:
         case EL_C:
         case EL_D:
-        case EL_E:
         case EL_F:
         case EL_G:
         case EL_H:
@@ -306,15 +310,11 @@ bool caps_word_press_user(uint16_t keycode) {
         case EL_K:
         case EL_L:
         case EL_M:
-        case EL_N:
         case EL_O:
-        case EL_P:
         case EL_Q:
         case EL_R:
-        case EL_S:
         case EL_T:
         case EL_U:
-        case EL_W:
         case EL_X:
         case EL_Y:
         case EL_Z:
@@ -330,37 +330,6 @@ bool caps_word_press_user(uint16_t keycode) {
     }
 }
 
-
-/*
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A:
-        case KC_B:
-        case KC_D ... KC_M:
-        case KC_P ... KC_Z:
-        case KC_SCLN:
-        case KC_COMM:
-        case KC_SLSH:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
-
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_C:
-        case KC_O:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_RIGHT:
-        case KC_LEFT:
-        case KC_UNDS:
-            return true;
-
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
-*/
 
 /* THIS FILE WAS GENERATED!
  *
