@@ -302,11 +302,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-// decrease TAPPING_TERM fon backspace and space
+// decrease TAPPING_TERM for backspace and space
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(3, KC_BSPC):
             return 150;
+        // note: does not work for hand_swap_config
         case SH_T(KC_SPC):
             return 250;
         default:
@@ -381,15 +382,15 @@ bool caps_word_press_user(uint16_t keycode) {
  */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3(
-        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-             KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_TAB,
-        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-              MO(1),   KC_A,  KC_S, CTL_T(KC_D), ALT_T(KC_F), KC_G,                    KC_H, ALT_T(KC_J), CTL_T(KC_K), KC_L, KC_SCLN,KC_DEL,
-        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_LGUI,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_END,
-        //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           MO(1), LT(3,KC_BSPC), SH_T(KC_SPC), KC_ENT, OSM(MOD_LSFT), KC_RALT
-                                            //`--------------------------'  `--------------------------'
+        //|--------+--------+------------+------------+------------+--------------|                       |---------------+------------+------------+------------+----------+----------|
+             KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_T,                                   KC_Y,        KC_U,        KC_I,        KC_O,      KC_P,    KC_TAB,
+        //|--------+--------+------------+------------+------------+--------------|                       |---------------+------------+------------+------------+----------+----------|
+              MO(1),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                   KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
+        //|--------+--------+------------+------------+------------+--------------|                       |---------------+------------+------------+------------+----------+----------|
+            KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                   KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
+        //|--------+--------+------------+------------+------------+--------------+-------------|  |------+---------------+------------+------------+------------+----------+----------|
+                                                              MO(1), LT(3,KC_BSPC), SH_T(KC_SPC),   KC_ENT, RALT_T(KC_ESC), OSM(MOD_LSFT)
+                                                    //`-----------------------------------------'  `------------------------------------'
         ),
 
     [_SYMB_FUNC] = LAYOUT_split_3x6_3(
@@ -424,7 +425,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU, KC_WBAK, KC_WFWD,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS,    KC_0
+                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_0,  KC_TRNS
                                             //`--------------------------'  `--------------------------'
         )
 };
