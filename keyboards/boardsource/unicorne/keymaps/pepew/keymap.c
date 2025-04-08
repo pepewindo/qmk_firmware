@@ -423,9 +423,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             KC_CAPS,  KC_INS, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,    KC_4,    KC_5,    KC_6, KC_PAST,  KC_DEL,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU, KC_WBAK, KC_WFWD,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
+            KC_PSCR, KC_WBAK, KC_WFWD,  KC_DEL, KC_VOLD, KC_VOLU,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_0,  KC_TRNS
+                                                KC_MUTE, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_0,  KC_TRNS
                                             //`--------------------------'  `--------------------------'
         )
 };
