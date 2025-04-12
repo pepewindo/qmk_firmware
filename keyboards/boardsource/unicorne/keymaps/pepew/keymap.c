@@ -12,7 +12,8 @@ enum layers {
     _BASE,
     _SYMB_FUNC,
     _BOOT_RGB,
-    _NAV_NUM
+    _NAV_NUM,
+    _MIR_FUNC
 };
 
 static const char PROGMEM ergol_logo_img[] = {
@@ -243,23 +244,6 @@ enum ergol_keycodes {
 };
 
 
-// #ifdef SWAP_HANDS_ENABLE
-// // matrix for mirroring
-// allows a persistent hand swap with space+enter, reverted by enter+space
-// __attribute__((weak)) const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
-//     // Left
-//     {{0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 4}, {5, 4}},
-//     {{0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}},
-//     {{0, 6}, {1, 6}, {2, 6}, {3, 6}, {4, 6}, {5, 6}},
-//     {{0, 7}, {1, 7}, {2, 7}, {3, 7}, {4, 7}, {5, 7}},
-//     // Right
-//     {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}},
-//     {{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}},
-//     {{0, 2}, {1, 2}, {2, 2}, {3, 2}, {4, 2}, {5, 2}},
-//     {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}}
-// };
-// #endif
-
 #ifdef SWAP_HANDS_ENABLE
 // matrix for mirroring
 // enables use of shift and altgr with left hand, do not swap space and enter
@@ -382,15 +366,15 @@ bool caps_word_press_user(uint16_t keycode) {
  */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3(
-        //|--------+--------+------------+------------+------------+--------------|                       |--------+------------+------------+------------+----------+----------|
-             KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_T,                            KC_Y,        KC_U,        KC_I,        KC_O,      KC_P,    KC_TAB,
-        //|--------+--------+------------+------------+------------+--------------|                       |--------+------------+------------+------------+----------+----------|
-              MO(1),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                            KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
-        //|--------+--------+------------+------------+------------+--------------|                       |--------+------------+------------+------------+----------+----------|
-            KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                            KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
-        //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------+------------+------------+------------+----------+----------|
-                                                              MO(1), LT(3,KC_BSPC), SH_T(KC_SPC),   KC_ENT, KC_RALT, OSM(MOD_LSFT)
-                                                    //`-----------------------------------------'  `------------------------------'
+        //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
+             KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_T,                                  KC_Y,        KC_U,        KC_I,        KC_O,      KC_P,    KC_TAB,
+        //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
+              MO(1),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
+        //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
+            KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
+        //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
+                                                              MO(1), LT(3,KC_BSPC), LT(4,KC_SPC),   KC_ENT, OSM(MOD_LSFT), KC_RALT
+                                                    //`-----------------------------------------'  `----------------------------------'
         ),
 
     [_SYMB_FUNC] = LAYOUT_split_3x6_3(
@@ -421,12 +405,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
              KC_ESC,  KC_TAB, KC_HOME,   KC_UP,  KC_END, KC_PGUP,                      KC_PMNS,    KC_7,    KC_8,    KC_9, KC_PSLS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_CAPS,  KC_INS, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,    KC_4,    KC_5,    KC_6, KC_PAST,  KC_DEL,
+            KC_TRNS,  KC_INS, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,    KC_4,    KC_5,    KC_6, KC_PAST,  KC_DEL,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_PSCR, KC_WBAK, KC_WFWD,  KC_ESC, KC_VOLD, KC_VOLU,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
+            KC_TRNS, KC_PSCR,  KC_ESC, KC_CAPS, KC_WBAK, KC_WFWD,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                KC_MUTE, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_0,  KC_TRNS
+                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS,    KC_0
+
                                             //`--------------------------'  `--------------------------'
+        ),
+    [_MIR_FUNC] = LAYOUT_split_3x6_3(
+        //|--------+--------+-------+--------+------------+--------|                   |-------+--------+------+------+-------+--------|
+            KC_WAKE,    KC_P,   KC_O,    KC_I,        KC_U,    KC_Y,                    KC_VOLU,   KC_F7, KC_F8, KC_F9, KC_F10, KC_BRIU,
+        //|--------+--------+-------+--------+------------+--------|                   |-------+--------+------+------+-------+--------|
+            KC_SLEP, KC_SCLN,   KC_L,    KC_K,        KC_J,    KC_H,                    KC_VOLD,   KC_F4, KC_F5, KC_F6, KC_F11, KC_BRID,
+        //|--------+--------+-------+--------+------------+--------|                   |-------+--------+------+------+-------+--------|
+            KC_CNCL, KC_SLSH, KC_DOT, KC_COMM,        KC_M,    KC_N,                    KC_MUTE,   KC_F1, KC_F2, KC_F3, KC_F12,  KC_CLR,
+        //|--------+--------+-------+--------+------------+--------+-------|  |--------+-------+--------+------+------+-------+--------|
+                                             OSM(MOD_LSFT), KC_RALT, KC_SPC,    KC_TRNS, KC_DEL, KC_TRNS
+                                          //`------------------------------'  `-------------------------'
         )
 };
 
@@ -463,30 +459,9 @@ bool oled_task_user(void) {
         case _NAV_NUM:
             oled_write_raw_P(ergol_logo_navnum_img, sizeof(ergol_logo_navnum_img));
             break;
-
-        /*
-        oled_set_cursor(0,6);
-        oled_write_P(PSTR("PEPE\nBOARD\n"), false);
-        oled_write_P(PSTR("-----\n"), false);
-        // Host Keyboard Layer Status
-        oled_write_P(PSTR("MODE\n"), false);
-        oled_write_P(PSTR("\n"), false);
-
-        switch (get_highest_layer(layer_state)) {
-            case 0:
-                oled_write_P(PSTR("BASE\n"), false);
-                break;
-            case 1:
-                oled_write_P(PSTR("SYMB_FUNC\n"), false);
-                break;
-            case 2:
-                oled_write_P(PSTR("BOOT_RGB\n"), false);
-                break;
-            case 3:
-                oled_write_P(PSTR("NAV_NUM\n"), false);
-                break;
-        }
-        */
+        case _MIR_FUNC:
+            oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
+            break;
         }
     }
 
