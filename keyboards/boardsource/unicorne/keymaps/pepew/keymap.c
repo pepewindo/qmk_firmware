@@ -13,7 +13,8 @@ enum layers {
     _SYMB_FUNC,
     _BOOT_RGB,
     _NAV_NUM,
-    _MIR_FUNC
+    _MIR_FUNC,
+    _MOUSE_NAV
 };
 
 static const char PROGMEM ergol_logo_img[] = {
@@ -373,7 +374,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
             KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
         //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
-                                                              MO(1), LT(3,KC_BSPC), LT(4,KC_SPC),   KC_ENT, OSM(MOD_LSFT), KC_RALT
+                                                              MO(1), LT(3,KC_BSPC), LT(4,KC_SPC),   LT(5,KC_ENT), OSM(MOD_LSFT), KC_RALT
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 
@@ -405,24 +406,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
              KC_ESC,  KC_TAB, KC_HOME,   KC_UP,  KC_END, KC_PGUP,                      KC_PMNS,    KC_7,    KC_8,    KC_9, KC_PSLS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS,  KC_INS, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,    KC_4,    KC_5,    KC_6, KC_PAST,  KC_DEL,
+            KC_TRNS,  KC_ESC, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,    KC_4,    KC_5,    KC_6, KC_PAST,  KC_DEL,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_PSCR,  KC_ESC, KC_CAPS, KC_WBAK, KC_WFWD,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
+            KC_TRNS, KC_CAPS, KC_PSCR,  KC_INS, KC_WBAK, KC_WFWD,                         KC_N,    KC_1,    KC_2,    KC_3,  KC_EQL, KC_CALC,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                                 KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS,    KC_0
-
                                             //`--------------------------'  `--------------------------'
         ),
+
     [_MIR_FUNC] = LAYOUT_split_3x6_3(
-        //|--------+--------+-------+--------+------------+--------|                   |-------+--------+------+------+-------+--------|
-            KC_WAKE,    KC_P,   KC_O,    KC_I,        KC_U,    KC_Y,                    KC_VOLU,   KC_F7, KC_F8, KC_F9, KC_F10, KC_BRIU,
-        //|--------+--------+-------+--------+------------+--------|                   |-------+--------+------+------+-------+--------|
-            KC_SLEP, KC_SCLN,   KC_L,    KC_K,        KC_J,    KC_H,                    KC_VOLD,   KC_F4, KC_F5, KC_F6, KC_F11, KC_BRID,
-        //|--------+--------+-------+--------+------------+--------|                   |-------+--------+------+------+-------+--------|
-            KC_CNCL, KC_SLSH, KC_DOT, KC_COMM,        KC_M,    KC_N,                    KC_MUTE,   KC_F1, KC_F2, KC_F3, KC_F12,  KC_CLR,
-        //|--------+--------+-------+--------+------------+--------+-------|  |--------+-------+--------+------+------+-------+--------|
-                                             OSM(MOD_LSFT), KC_RALT, KC_SPC,    KC_TRNS, KC_DEL, KC_TRNS
-                                          //`------------------------------'  `-------------------------'
+        //|--------+--------+-------+--------+--------+--------------|                   |-------+--------+------+------+-------+--------|
+            KC_WAKE,    KC_P,   KC_O,    KC_I,    KC_U,          KC_Y,                    KC_VOLU,   KC_F7, KC_F8, KC_F9, KC_F10, KC_BRIU,
+        //|--------+--------+-------+--------+--------+--------------|                   |-------+--------+------+------+-------+--------|
+            KC_SLEP, KC_SCLN,   KC_L,    KC_K,    KC_J,          KC_H,                    KC_VOLD,   KC_F4, KC_F5, KC_F6, KC_F11, KC_BRID,
+        //|--------+--------+-------+--------+--------+--------------|                   |-------+--------+------+------+-------+--------|
+            KC_CNCL, KC_SLSH, KC_DOT, KC_COMM,    KC_M,          KC_N,                    KC_MUTE,   KC_F1, KC_F2, KC_F3, KC_F12,  KC_CLR,
+        //|--------+--------+-------+--------+--------+--------------+--------|  |--------+-------+--------+------+------+-------+--------|
+                                               KC_RALT, OSM(MOD_LSFT), KC_TRNS,     KC_ENT, KC_DEL, KC_TRNS
+                                          //`---------------------------------'  `-------------------------'
+        ),
+
+    [_MOUSE_NAV] = LAYOUT_split_3x6_3(
+        //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
+            KC_TRNS, KC_TRNS, KC_TRNS,   MS_UP, KC_TRNS, KC_TRNS,                    KC_TRNS, MS_ACL0, MS_ACL1, MS_ACL2, KC_TRNS, KC_TRNS,
+        //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
+            KC_TRNS, KC_TRNS, MS_LEFT, MS_DOWN, MS_RGHT, KC_TRNS,                    KC_TRNS, MS_BTN1, MS_BTN2, MS_WHLU, KC_TRNS, KC_TRNS,
+        //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
+            KC_TRNS, KC_TRNS, MS_WHLL, KC_TRNS, MS_WHLR, KC_TRNS,                    KC_TRNS, MS_BTN3, KC_TRNS, MS_WHLD, KC_TRNS, KC_TRNS,
+        //|--------+--------+--------+--------+--------+--------+-------|  |-------+--------+--------+--------+--------+--------+--------|
+                                                  KC_NO, KC_BSPC, KC_ENT,   KC_TRNS, KC_TRNS, KC_TRNS
+                                            //`-------------------------'  `-------------------------'
         )
 };
 
@@ -461,6 +474,9 @@ bool oled_task_user(void) {
             break;
         case _MIR_FUNC:
             oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
+            break;
+        case _MOUSE_NAV:
+            oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
             break;
         }
     }
