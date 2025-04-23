@@ -428,11 +428,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOUSE_NAV] = LAYOUT_split_3x6_3(
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, KC_TRNS, MS_WHLU, KC_TRNS, KC_TRNS,                    KC_TRNS, MS_BTN1,   MS_UP, MS_BTN2, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, KC_TRNS, MS_WHLU, KC_TRNS, KC_TRNS,                    KC_VOLU, MS_BTN1,   MS_UP, MS_BTN2, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLR, KC_TRNS,                    KC_TRNS, MS_LEFT, MS_DOWN, MS_RGHT, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLR, KC_TRNS,                    KC_VOLD, MS_LEFT, MS_DOWN, MS_RGHT, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, MS_ACL0, MS_ACL1, MS_ACL2, KC_TRNS,                    KC_TRNS, MS_BTN1, MS_BTN3, MS_BTN2, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, MS_ACL0, MS_ACL1, MS_ACL2, KC_TRNS,                    KC_MUTE, MS_BTN1, MS_BTN3, MS_BTN2, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------+-------|  |-------+--------+--------+--------+--------+--------+--------|
                                                   KC_NO, KC_BSPC, KC_ENT,   KC_TRNS, KC_TRNS, KC_TRNS
                                             //`-------------------------'  `-------------------------'
