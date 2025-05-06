@@ -10,11 +10,12 @@
 // Layer names for each layer
 enum layers {
     _BASE,
+    _ENGLISH,
     _SYMB_FUNC,
     _BOOT_RGB,
     _NAV_NUM,
     _MIR_FUNC,
-    _MOUSE_NAV
+    _MOUSE_NAV,
 };
 
 static const char PROGMEM ergol_logo_img[] = {
@@ -370,19 +371,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
              KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_T,                                  KC_Y,        KC_U,        KC_I,        KC_O,      KC_P,    KC_TAB,
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
-              MO(1),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
+              MO(2),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
             KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
         //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
-                                                              MO(1), LT(3,KC_BSPC), LT(4,KC_SPC),   LT(5,KC_ENT), OSM(MOD_LSFT), KC_RALT
+                                                              MO(2), LT(4,KC_BSPC), LT(5,KC_SPC),   LT(6,KC_ENT), OSM(MOD_LSFT), KC_RALT
+                                                    //`-----------------------------------------'  `----------------------------------'
+        ),
+
+    [_ENGLISH] = LAYOUT_split_3x6_3(
+        //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
+             KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_O,                                  KC_Y,        KC_U,        KC_I,        KC_T,      KC_P,    KC_TAB,
+        //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
+              TO(0),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
+        //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
+            KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
+        //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
+                                                              MO(2), LT(4,KC_BSPC), LT(6,KC_SPC),   LT(6,KC_ENT), OSM(MOD_LSFT), KC_RALT
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 
     [_SYMB_FUNC] = LAYOUT_split_3x6_3(
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TRNS,
+            KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,   TG(1),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   TG(2),
+            KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   TG(3),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -439,6 +452,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         )
 };
 
+
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
@@ -461,6 +475,7 @@ bool oled_task_user(void) {
     } else {
         switch (get_highest_layer(layer_state)) {
         case _BASE:
+        case _ENGLISH:
             oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
             break;
         case _SYMB_FUNC:
