@@ -393,7 +393,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMB_FUNC] = LAYOUT_split_3x6_3(
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,   TG(1),
+            KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_PAST, KC_LPRN, KC_RPRN,   TG(1),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   TG(3),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
