@@ -25,3 +25,6 @@
 // Mouse emulation
 #define MK_3_SPEED
 #define MK_MOMENTARY_ACCEL
+
+// Cold reboot mitigation
+#define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 174 // 8192 / 47 = max 174

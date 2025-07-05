@@ -381,9 +381,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ENGLISH] = LAYOUT_split_3x6_3(
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
-             KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_O,                                  KC_Y,        KC_U,        KC_I,        KC_T,      KC_P,    KC_TAB,
+             KC_ESC,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_O,                                  KC_Y,        KC_U,        KC_I,     KC_SCLN,      KC_P,    KC_TAB,
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
-              TO(0),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,    KC_DEL,
+              TO(0),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),      KC_T,    KC_DEL,
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
             KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_END,
         //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
@@ -443,9 +443,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
             KC_TRNS, KC_TRNS, KC_TRNS, MS_WHLU, KC_TRNS, KC_TRNS,                    KC_VOLU, MS_BTN1,   MS_UP, MS_BTN2, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLR, KC_TRNS,                    KC_VOLD, MS_LEFT, MS_DOWN, MS_RGHT, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, MS_ACL0, MS_ACL1, MS_ACL2, KC_TRNS,                    KC_VOLD, MS_LEFT, MS_DOWN, MS_RGHT, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, MS_ACL0, MS_ACL1, MS_ACL2, KC_TRNS,                    KC_MUTE, MS_BTN1, MS_BTN3, MS_BTN2, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLR, KC_TRNS,                    KC_MUTE, MS_BTN1, MS_BTN3, MS_BTN2, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------+-------|  |-------+--------+--------+--------+--------+--------+--------|
                                                   KC_NO, KC_BSPC, KC_ENT,   KC_TRNS, KC_TRNS, KC_TRNS
                                             //`-------------------------'  `-------------------------'
