@@ -359,6 +359,18 @@ bool caps_word_press_user(uint16_t keycode) {
         default:
             return false;
     }
+
+}
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        //case LT(1, KC_BSPC):
+        case MT(MOD_LSFT,KC_BSPC):
+            // Immediately select the hold action when another key is tapped.
+            return true;
+        default:
+            // Do not select the hold action when another key is tapped.
+            return false;
+    }
 }
 
 /* THIS FILE WAS GENERATED!
@@ -375,7 +387,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
             KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_DEL,
         //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
-                                                        LT(2,KC_ESC),LT(5,KC_BSPC), LT(4,KC_SPC),   MT(MOD_RALT,KC_ENT), OSM(MOD_LSFT), LT(6,KC_ESC)
+                                                   LT(5,KC_ESC),MT(MOD_LSFT,KC_BSPC), LT(4,KC_SPC),   MT(MOD_RALT,KC_ENT), OSM(MOD_LSFT), LT(6,KC_ESC)
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 
@@ -387,7 +399,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+----------|
             KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,    KC_DEL,
         //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+----------|
-                                                              MO(2), LT(5,KC_BSPC), LT(4,KC_SPC),   MT(MOD_RALT,KC_ENT), OSM(MOD_LSFT), LT(6,KC_ESC)
+                                                  LT(5,KC_ESC), MT(MOD_LSFT,KC_BSPC), LT(4,KC_SPC),   MT(MOD_RALT,KC_ENT), OSM(MOD_LSFT), LT(6,KC_ESC)
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 

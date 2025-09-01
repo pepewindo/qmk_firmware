@@ -30,3 +30,6 @@
 
 // Cold reboot mitigation
 #define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 174 // 8192 / 47 = max 174
+
+// hold for Shift/Backspace key
+#define PERMISSIVE_HOLD_PER_KEY
