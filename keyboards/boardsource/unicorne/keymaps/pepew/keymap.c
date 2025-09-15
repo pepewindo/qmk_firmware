@@ -363,8 +363,8 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        //case LT(1, KC_BSPC):
         case MT(MOD_LSFT,KC_BSPC):
+        case  LT(4,KC_SPC):
             // Immediately select the hold action when another key is tapped.
             return true;
         default:
