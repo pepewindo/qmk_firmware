@@ -17,6 +17,7 @@
 // Tapping Term for cool people
 #define TAPPING_TERM 300
 #define TAPPING_TERM_PER_KEY
+#define QUICK_TAP_TERM 60
 // #define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_INVERT_ON_SHIFT
@@ -32,4 +33,4 @@
 #define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 174 // 8192 / 47 = max 174
 
 // hold for Shift/Backspace key
-#define PERMISSIVE_HOLD_PER_KEY
+// #define PERMISSIVE_HOLD_PER_KEY
