@@ -418,9 +418,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BOOT_RGB] = LAYOUT_split_3x6_3(
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            QK_BOOT, KC_TRNS, QK_MAKE, KC_TRNS, KC_TRNS,  EE_CLR,                      RGB_VAI, RGB_HUI, RGB_SAI, RGB_MOD, RGB_TOG, KC_TRNS,
+            QK_BOOT, KC_TRNS, QK_MAKE, KC_TRNS, KC_TRNS,  EE_CLR,                      RM_VALU, RM_HUEU, RM_SATU, RM_NEXT, RM_TOGG, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-              TO(0), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                      RGB_VAD, RGB_HUD, RGB_SAD,RGB_RMOD, RGB_M_T,   TO(0),
+              TO(0), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                      RM_VALD, RM_HUED, RM_SATD, RM_PREV, CK_TOGG,   TO(0),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
