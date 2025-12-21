@@ -247,16 +247,16 @@ enum ergol_keycodes {
 
 // additional combos for Esc
 enum combos {
-    ASEN_ESC,
-    RTIU_ESC
+    SEN_ESC,
+    RTI_ESC
 };
 
-const uint16_t PROGMEM esc_combo1[] = { KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F), COMBO_END};
-const uint16_t PROGMEM esc_combo2[] = { ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L), KC_SCLN, COMBO_END};
+const uint16_t PROGMEM esc_combo1[] = { GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F), COMBO_END};
+const uint16_t PROGMEM esc_combo2[] = { ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L), COMBO_END};
 
 combo_t key_combos[] = {
-    [ASEN_ESC] = COMBO(esc_combo1, KC_ESC),
-    [RTIU_ESC] = COMBO(esc_combo2, KC_ESC),
+    [SEN_ESC] = COMBO(esc_combo1, KC_ESC),
+    [RTI_ESC] = COMBO(esc_combo2, KC_ESC),
 };
 
 #ifdef SWAP_HANDS_ENABLE
