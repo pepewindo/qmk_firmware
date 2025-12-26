@@ -23,6 +23,10 @@
 #define CAPS_WORD_INVERT_ON_SHIFT
 #define ONESHOT_TIMEOUT 2000 /* Time (in ms) before the one shot key is released */
 
+// timeout for the combos to be recognized
+#define COMBO_TERM 20
+#define COMBO_STRICT_TIMER
+
 // Mouse emulation
 #define MK_3_SPEED
 #define MK_MOMENTARY_ACCEL
