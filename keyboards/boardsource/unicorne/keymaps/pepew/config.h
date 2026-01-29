@@ -24,7 +24,7 @@
 #define ONESHOT_TIMEOUT 2000 /* Time (in ms) before the one shot key is released */
 
 // timeout for the combos to be recognized
-#define COMBO_TERM 20
+#define COMBO_TERM 10
 #define COMBO_STRICT_TIMER
 
 // Mouse emulation
