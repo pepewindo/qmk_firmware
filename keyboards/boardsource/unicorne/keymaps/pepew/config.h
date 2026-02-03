@@ -18,6 +18,7 @@
 #define TAPPING_TERM 300
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM 60
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 // #define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_INVERT_ON_SHIFT
