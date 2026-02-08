@@ -203,61 +203,74 @@ enum custom_keycodes {
 };
 
 enum ergol_keycodes {
-    EL_Q = KC_Q,
-    EL_C = KC_W,
-    EL_O = KC_E,
-    EL_P = KC_R,
-    EL_W = KC_T,
-    EL_J = KC_Y,
-    EL_M = KC_U,
-    EL_D = KC_I,
-    EL_1DK = KC_O,
-    EL_Y = KC_P,
-    EL_A = KC_A,
-    EL_S = KC_S,
-    EL_E = KC_D,
-    EL_N = KC_F,
-    EL_F = KC_G,
-    EL_L = KC_H,
-    EL_R = KC_J,
-    EL_T = KC_K,
-    EL_I = KC_L,
-    EL_U = KC_SCLN,
-    EL_Z = KC_Z,
-    EL_X = KC_X,
-    EL_MINS = KC_C,
-    EL_V = KC_V,
-    EL_B = KC_B,
-    EL_DOT = KC_N,
-    EL_H = KC_M,
-    EL_G = KC_COMM,
-    EL_COMM = KC_DOT,
-    EL_K = KC_SLSH,
-    EL_1 = KC_1,
-    EL_2 = KC_2,
-    EL_3 = KC_3,
-    EL_4 = KC_4,
-    EL_5 = KC_5,
-    EL_6 = KC_6,
-    EL_7 = KC_7,
-    EL_8 = KC_8,
-    EL_9 = KC_9,
-    EL_0 = KC_0
+     EL_Q    = KC_Q,
+     EL_C    = KC_W,
+     EL_O    = KC_E,
+     EL_P    = KC_R,
+     EL_W    = KC_T,
+     EL_J    = KC_Y,
+     EL_M    = KC_U,
+     EL_D    = KC_I,
+     EL_1DK  = KC_O,
+     EL_Y    = KC_P,
+     EL_A    = KC_A,
+     EL_S    = KC_S,
+     EL_E    = KC_D,
+     EL_N    = KC_F,
+     EL_F    = KC_G,
+     EL_L    = KC_H,
+     EL_R    = KC_J,
+     EL_T    = KC_K,
+     EL_I    = KC_L,
+     EL_U    = KC_SCLN,
+     EL_Z    = KC_Z,
+     EL_X    = KC_X,
+     EL_MINS = KC_C,
+     EL_V    = KC_V,
+     EL_B    = KC_B,
+     EL_DOT  = KC_N,
+     EL_H    = KC_M,
+     EL_G    = KC_COMM,
+     EL_COMM = KC_DOT,
+     EL_K    = KC_SLSH,
+     EL_1    = KC_1,
+     EL_2    = KC_2,
+     EL_3    = KC_3,
+     EL_4    = KC_4,
+     EL_5    = KC_5,
+     EL_6    = KC_6,
+     EL_7    = KC_7,
+     EL_8    = KC_8,
+     EL_9    = KC_9,
+     EL_0    = KC_0
 };
 
 // additional combos for Esc
-enum combos {
-    SE_ESC,
-    TI_ESC
-};
+enum combos { SE_ESC, TI_ESC };
 
-const uint16_t PROGMEM esc_combo1[] = { GUI_T(KC_S), CTL_T(KC_D), COMBO_END};
-const uint16_t PROGMEM esc_combo2[] = { CTL_T(KC_K), GUI_T(KC_L), COMBO_END};
+const uint16_t PROGMEM esc_combo1[] = {GUI_T(KC_S), CTL_T(KC_D), COMBO_END};
+const uint16_t PROGMEM esc_combo2[] = {CTL_T(KC_K), GUI_T(KC_L), COMBO_END};
 
 combo_t key_combos[] = {
     [SE_ESC] = COMBO(esc_combo1, KC_ESC),
     [TI_ESC] = COMBO(esc_combo2, KC_ESC),
 };
+
+uint16_t last_key_press_time = 0;
+
+// prevents Esc combo activation if last key pressed within 150ms
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    switch (combo_index) {
+        case SE_ESC:
+        case TI_ESC:
+            if (timer_elapsed(last_key_press_time) < 80) { // 80 ms delay
+                return false;
+            }
+            last_key_press_time = timer_read();
+            return true; // Activate combo
+    }
+    return true;
+}
 
 #ifdef SWAP_HANDS_ENABLE
 // matrix for mirroring
@@ -272,32 +285,30 @@ __attribute__((weak)) const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRI
     {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}},
     {{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}},
     {{0, 2}, {1, 2}, {2, 2}, {3, 2}, {4, 2}, {5, 2}},
-    {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {0, 5}, {5, 7}}
-};
+    {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {0, 5}, {5, 7}}};
 #endif
-
 
 // french quotes with embedded non-breaking spaces
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case QMK_GO:
-        if (record->event.pressed) {
-            // when keycode QMK_GO is pressed
-            SEND_STRING( SS_RSFT( SS_TAP(X_2) " " ) );
-        } else {
-            // when keycode QMK_GO is released
-        }
-        break;
+        case QMK_GO:
+            if (record->event.pressed) {
+                // when keycode QMK_GO is pressed
+                SEND_STRING( SS_RSFT( SS_TAP(X_2) " " ) );
+            } else {
+                // when keycode QMK_GO is released
+            }
+            break;
 
-    case QMK_GC:
-        if (record->event.pressed) {
-            // when keycode QMK_GC is pressed
-            SEND_STRING( SS_RSFT( " " SS_TAP(X_3) ) );
-        } else {
-            // when keycode QMK_GC is released
+        case QMK_GC:
+            if (record->event.pressed) {
+                // when keycode QMK_GC is pressed
+                SEND_STRING( SS_RSFT( " " SS_TAP(X_3) ) );
+            } else {
+                // when keycode QMK_GC is released
+            }
+            break;
         }
-        break;
-    }
     return true;
 };
 
@@ -372,7 +383,6 @@ bool caps_word_press_user(uint16_t keycode) {
         default:
             return false;
     }
-
 }
 /*
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
@@ -389,7 +399,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case MT(MOD_RALT,KC_ENT):
+        case MT(MOD_RALT, KC_ENT):
             // Immediately select the hold action when another key is pressed.
             return true;
         default:
@@ -428,17 +438,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 
-        [_SYMB_FUNC] = LAYOUT_split_3x6_3(
-            //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_PAST, KC_LPRN, KC_RPRN,   TG(1),
-            //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   TG(3),
-            //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
-            //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                    KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
-                                                //`--------------------------'  `--------------------------'
-            ),
+    [_SYMB_FUNC] = LAYOUT_split_3x6_3(
+        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+            KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_PAST, KC_LPRN, KC_RPRN,   TG(1),
+        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+            KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   TG(3),
+        //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
+        //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
+                                            //`--------------------------'  `--------------------------'
+        ),
 
     [_BOOT_RGB] = LAYOUT_split_3x6_3(
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -505,38 +515,34 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
-
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         render_layer_state();
     } else {
         switch (get_highest_layer(layer_state)) {
-        case _BASE:
-        case _ENGLISH:
-            oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
-            break;
-        case _SYMB_FUNC:
-            oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
-            break;
-        case _BOOT_RGB:
-            oled_write_raw_P(ergol_logo_bootrgb_img, sizeof(ergol_logo_bootrgb_img));
-            break;
-        case _NAV_NUM:
-            oled_write_raw_P(ergol_logo_navnum_img, sizeof(ergol_logo_navnum_img));
-            break;
-        case _MIR_FUNC:
-            oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
-            break;
-        case _MOUSE_NAV:
-            oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
-            break;
+            case _BASE:
+            case _ENGLISH:
+                oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
+                break;
+            case _SYMB_FUNC:
+                oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
+                break;
+            case _BOOT_RGB:
+                oled_write_raw_P(ergol_logo_bootrgb_img, sizeof(ergol_logo_bootrgb_img));
+                break;
+            case _NAV_NUM:
+                oled_write_raw_P(ergol_logo_navnum_img, sizeof(ergol_logo_navnum_img));
+                break;
+            case _MIR_FUNC:
+                oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
+                break;
+            case _MOUSE_NAV:
+                oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
+                break;
         }
     }
 
     return false;
 }
 
-
-
 #endif // OLED_ENABLE
-
