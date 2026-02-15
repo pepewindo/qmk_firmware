@@ -17,16 +17,19 @@
 // Tapping Term for cool people
 #define TAPPING_TERM 300
 #define TAPPING_TERM_PER_KEY
-#define QUICK_TAP_TERM 60
+#define QUICK_TAP_TERM 150
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+#define FLOW_TAP_TERM 150
 // #define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_INVERT_ON_SHIFT
 #define ONESHOT_TIMEOUT 2000 /* Time (in ms) before the one shot key is released */
 
 // timeout for the combos to be recognized
-#define COMBO_TERM 10
+#define IDLE_BEFORE_COMBO 300
+#define COMBO_TERM 15
 #define COMBO_STRICT_TIMER
+#define COMBO_SHOULD_TRIGGER
 
 // Mouse emulation
 #define MK_3_SPEED

@@ -245,29 +245,20 @@ enum ergol_keycodes {
      EL_0    = KC_0
 };
 
-// additional combos for Esc
-enum combos { SE_ESC, TI_ESC };
+enum combos {CO_ESC};
 
-const uint16_t PROGMEM esc_combo1[] = {GUI_T(KC_S), CTL_T(KC_D), COMBO_END};
-const uint16_t PROGMEM esc_combo2[] = {CTL_T(KC_K), GUI_T(KC_L), COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {EL_C, EL_O, COMBO_END};
 
 combo_t key_combos[] = {
-    [SE_ESC] = COMBO(esc_combo1, KC_ESC),
-    [TI_ESC] = COMBO(esc_combo2, KC_ESC),
+    [CO_ESC] = COMBO(esc_combo, KC_ESC),
 };
 
 uint16_t last_key_press_time = 0;
 
-// prevents Esc combo activation if last key pressed within 150ms
+// prevents combo activation if last key pressed within IDLE_BEFORE_COMBO
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    switch (combo_index) {
-        case SE_ESC:
-        case TI_ESC:
-            if (timer_elapsed(last_key_press_time) < 80) { // 80 ms delay
-                return false;
-            }
-            last_key_press_time = timer_read();
-            return true; // Activate combo
+    if (timer_elapsed(last_key_press_time) < IDLE_BEFORE_COMBO) {
+        return false;
     }
     return true;
 }
@@ -294,7 +285,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case QMK_GO:
             if (record->event.pressed) {
                 // when keycode QMK_GO is pressed
-                SEND_STRING( SS_RSFT( SS_TAP(X_2) " " ) );
+                SEND_STRING(SS_RSFT(SS_TAP(X_2) " "));
             } else {
                 // when keycode QMK_GO is released
             }
@@ -303,27 +294,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case QMK_GC:
             if (record->event.pressed) {
                 // when keycode QMK_GC is pressed
-                SEND_STRING( SS_RSFT( " " SS_TAP(X_3) ) );
+                SEND_STRING(SS_RSFT(" " SS_TAP(X_3)));
             } else {
                 // when keycode QMK_GC is released
             }
             break;
-        }
+    }
     return true;
 };
-
-// decrease TAPPING_TERM for backspace and space
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LT(3, KC_BSPC):
-            return 150;
-        // note: does not work for hand_swap_config
-        case SH_T(KC_SPC):
-            return 250;
-        default:
-            return TAPPING_TERM;
-    }
-}
 
 // CAPS_WORD
 bool caps_word_press_user(uint16_t keycode) {
@@ -384,22 +362,11 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;
     }
 }
-/*
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case MT(MOD_LSFT,KC_BSPC):
-        case  LT(4,KC_SPC):
-            // Immediately select the hold action when another key is tapped.
-            return true;
-        default:
-            // Do not select the hold action when another key is tapped.
-            return false;
-    }
-}*/
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MT(MOD_RALT, KC_ENT):
+        case MT(MOD_LSFT, KC_BSPC):
             // Immediately select the hold action when another key is pressed.
             return true;
         default:
