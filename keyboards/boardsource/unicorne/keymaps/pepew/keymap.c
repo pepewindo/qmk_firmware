@@ -245,12 +245,18 @@ enum ergol_keycodes {
      EL_0    = KC_0
 };
 
-enum combos {CO_ESC};
+enum combos {CO_ESC, XMIN_ESC, DDK_ESC, GCOM_ESC};
 
-const uint16_t PROGMEM esc_combo[] = {EL_C, EL_O, COMBO_END};
+const uint16_t PROGMEM esc_combo1[] = {EL_C, EL_O   , COMBO_END};
+const uint16_t PROGMEM esc_combo2[] = {EL_X, EL_MINS, COMBO_END};
+const uint16_t PROGMEM esc_combo3[] = {EL_D, EL_1DK , COMBO_END};
+const uint16_t PROGMEM esc_combo4[] = {EL_G, EL_COMM, COMBO_END};
 
 combo_t key_combos[] = {
-    [CO_ESC] = COMBO(esc_combo, KC_ESC),
+    [CO_ESC]   = COMBO(esc_combo1, KC_ESC),
+    [XMIN_ESC] = COMBO(esc_combo2, KC_ESC),
+    [DDK_ESC]  = COMBO(esc_combo3, KC_ESC),
+    [GCOM_ESC] = COMBO(esc_combo4, KC_ESC),
 };
 
 uint16_t last_key_press_time = 0;
