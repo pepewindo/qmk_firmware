@@ -10,7 +10,7 @@
 // Layer names for each layer
 enum layers {
     _BASE,
-    _ENGLISH,
+    _SELENIUM,
     _SYMB_FUNC,
     _BOOT_RGB,
     _NAV_NUM,
@@ -399,15 +399,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 
-    [_ENGLISH] = LAYOUT_split_3x6_3(
+    [_SELENIUM] = LAYOUT_split_3x6_3(
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+--------------|
-             KC_TAB,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_O,                                  KC_Y,        KC_U,        KC_I,        KC_T,      KC_P, RCTL(KC_BSPC),
+             KC_TAB,    KC_Q,        KC_W,        KC_E,        KC_R,          KC_T,                                  KC_Y,        KC_U,        KC_I,        KC_O,      KC_P, RCTL(KC_BSPC),
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+--------------|
               TO(0),    KC_A, GUI_T(KC_S), CTL_T(KC_D), ALT_T(KC_F),          KC_G,                                  KC_H, ALT_T(KC_J), CTL_T(KC_K), GUI_T(KC_L),   KC_SCLN,        KC_END,
         //|--------+--------+------------+------------+------------+--------------|                       |--------------+------------+------------+------------+----------+--------------|
             KC_LGUI,    KC_Z,        KC_X,         KC_C,       KC_V,          KC_B,                                  KC_N,        KC_M,     KC_COMM,      KC_DOT,   KC_SLSH,        KC_DEL,
         //|--------+--------+------------+------------+------------+--------------+-------------|  |------+--------------+------------+------------+------------+----------+--------------|
-                                                  LT(5,KC_ESC), MT(MOD_LSFT,KC_BSPC), LT(4,KC_SPC),   MT(MOD_RALT,KC_ENT), OSM(MOD_LSFT), LT(6,KC_ESC)
+                                                      LT(5,KC_ESC), OSM(MOD_LSFT), LT(4,KC_BSPC),   LT(4,KC_SPC), MT(MOD_RALT,KC_ENT), LT(6,KC_ESC)
                                                     //`-----------------------------------------'  `----------------------------------'
         ),
 
@@ -494,7 +494,7 @@ bool oled_task_user(void) {
     } else {
         switch (get_highest_layer(layer_state)) {
             case _BASE:
-            case _ENGLISH:
+            case _SELENIUM:
                 oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
                 break;
             case _SYMB_FUNC:
