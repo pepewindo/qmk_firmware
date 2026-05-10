@@ -232,23 +232,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOUSE_NAV] = LAYOUT_split_3x6_3( // 5
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, KC_TRNS, MS_WHLU, KC_TRNS, KC_TRNS,                    KC_VOLU, MS_BTN1,   MS_UP, MS_BTN2, KC_TRNS, KC_TRNS,
+            XXXXXXX, XXXXXXX, XXXXXXX, MS_WHLU, XXXXXXX, XXXXXXX,                    KC_VOLU, MS_BTN1,   MS_UP, MS_BTN2, XXXXXXX, XXXXXXX,
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, MS_ACL0, MS_ACL1, MS_ACL2, KC_TRNS,                    KC_VOLD, MS_LEFT, MS_DOWN, MS_RGHT, MS_BTN1, KC_TRNS,
+            XXXXXXX, XXXXXXX, MS_ACL0, MS_ACL1, MS_ACL2, MS_BTN1,                    KC_VOLD, MS_LEFT, MS_DOWN, MS_RGHT, MS_BTN1, XXXXXXX,
         //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLR, KC_TRNS,                    KC_MUTE, MS_BTN1, MS_BTN3, MS_BTN2, KC_TRNS, KC_TRNS,
+            XXXXXXX, XXXXXXX, MS_WHLL, MS_WHLD, MS_WHLR, XXXXXXX,                    KC_MUTE, MS_BTN1, MS_BTN3, MS_BTN2, XXXXXXX, XXXXXXX,
         //|--------+--------+--------+--------+--------+--------+-------|  |-------+--------+--------+--------+--------+--------+--------|
-                                                 TG(6), MS_BTN1, KC_BSPC,   KC_TRNS, KC_TRNS, KC_TRNS
+                                                 TG(6), MS_BTN1, KC_BSPC,   XXXXXXX, XXXXXXX, XXXXXXX
                                             //`-------------------------'  `-------------------------'
         ),
 
     [_BOOT_RGB] = LAYOUT_split_3x6_3( // 6
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            QK_BOOT, KC_TRNS, QK_MAKE, KC_TRNS, KC_TRNS,  EE_CLR,                      RM_VALU, RM_HUEU, RM_SATU, RM_NEXT, RM_TOGG,   TO(0),
+            QK_BOOT, XXXXXXX, QK_MAKE, XXXXXXX, XXXXXXX,  EE_CLR,                      RM_VALU, RM_HUEU, RM_SATU, RM_NEXT, RM_TOGG,   TO(0),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-              TO(0), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                      RM_VALD, RM_HUED, RM_SATD, RM_PREV, CK_TOGG,   TO(0),
+              TO(0), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      RM_VALD, RM_HUED, RM_SATD, RM_PREV, CK_TOGG,   TO(0),
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                                   TO(0),   TO(0),   TO(0),      TO(0),   TO(0),   TO(0)
                                             //`--------------------------'  `--------------------------'
