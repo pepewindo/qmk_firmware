@@ -12,9 +12,9 @@
 // Layer names for each layer
 enum layers {
     _BASE,
-    _ALTGR,
     _SYMB_NUM,
     _NAV_NUM,
+    _ALTGR,
     _MIR_FUNC,
     _MOUSE_NAV,
     _BOOT_RGB,
@@ -26,18 +26,16 @@ enum custom_keycodes {
 };
 
 // enum combos {CO_ESC, XMIN_ESC, GOGC_ESC, DDK_ENT, GCOM_ENT, ASSH_ENT};
-enum combos {XMIN_ESC, DDK_ENT, GCOM_ENT, ASSH_ENT};
+enum combos {XMIN_ESC, DDK_ENT, GCOM_ENT};
 
-const uint16_t PROGMEM esc_combo2[] = {EL_X, EL_MINS, COMBO_END};
+const uint16_t PROGMEM esc_combo[]  = {EL_X, EL_MINS, COMBO_END};
 const uint16_t PROGMEM ent_combo1[] = {EL_D, EL_1DK , COMBO_END};
 const uint16_t PROGMEM ent_combo2[] = {EL_G, EL_COMM, COMBO_END};
-const uint16_t PROGMEM ent_combo3[] = {KC_PAST, KC_LPRN, COMBO_END};
 
 combo_t key_combos[] = {
-    [XMIN_ESC] = COMBO(esc_combo2, KC_ESC),
+    [XMIN_ESC] = COMBO(esc_combo,  KC_ESC),
     [DDK_ENT]  = COMBO(ent_combo1, KC_ENT),
     [GCOM_ENT] = COMBO(ent_combo2, KC_ENT),
-    [ASSH_ENT] = COMBO(ent_combo3, KC_ENT),
 };
 
 uint16_t last_key_press_time = 0;
@@ -172,50 +170,51 @@ bool caps_word_press_user(uint16_t keycode) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3( // 0
         //|--------+------+------------+------------+------------+--------------|                       |-------+------------+------------+------------+------------+--------------|
-             KC_TAB,  EL_Q,        EL_C,        EL_O,        EL_P,          EL_W,                           EL_J,        EL_M,        EL_D,      EL_1DK,        EL_Y, RCTL(KC_BSPC),
+              TO(2),  EL_Q,        EL_C,        EL_O,        EL_P,          EL_W,                           EL_J,        EL_M,        EL_D,      EL_1DK,        EL_Y, RCTL(KC_BSPC),
         //|--------+------+------------+------------+------------+--------------|                       |-------+------------+------------+------------+------------+--------------|
-              TO(2),  EL_A, GUI_T(EL_S), CTL_T(EL_E), ALT_T(EL_N),          EL_F,                           EL_L, ALT_T(EL_R), CTL_T(EL_T), GUI_T(EL_I), SFT_T(EL_U),        KC_END,
+              TO(1),  EL_A, GUI_T(EL_S), CTL_T(EL_E), ALT_T(EL_N),          EL_F,                           EL_L, ALT_T(EL_R), CTL_T(EL_T), GUI_T(EL_I), SFT_T(EL_U),        KC_ENT,
         //|--------+------+------------+------------+------------+--------------|                       |-------+------------+------------+------------+------------+--------------|
             KC_LGUI,  EL_Z,        EL_X,     EL_MINS,        EL_V,          EL_B,                         EL_DOT,        EL_H,        EL_G,     EL_COMM,        EL_K,        KC_DEL,
         //|--------+------+------------+------------+------------+--------------+--------------|  |-----+-------+------------+------------+------------+------------+--------------|
-                                                           OSL(4), OSM(MOD_LSFT), LT(3,KC_BSPC),   LT(2,KC_SPC), OSL(1), LT(5,KC_ESC)
+                                                           OSL(4), OSM(MOD_LSFT), LT(2,KC_BSPC),   LT(1,KC_SPC), OSL(3), LT(5,KC_ESC)
                                                          //`-----------------------------------'  `----------------------------------'
         ),
 
-    [_ALTGR] = LAYOUT_split_3x6_3( // 1
-        //|--------+-----------+-----------+-----------+-----------+-----------|                    |----------+-----------+-----------+--------------+-----------+--------------|
-             KC_TAB, RALT(EL_Q), RALT(EL_C), RALT(EL_O), RALT(KC_R), RALT(KC_T),                     RALT(EL_J), RALT(EL_M), RALT(EL_D),    RALT(KC_O), RALT(EL_Y), RCTL(KC_BSPC),
-        //|--------+-----------+-----------+-----------+-----------+-----------|                    |----------+-----------+-----------+--------------+-----------+--------------|
-              TO(2), RALT(KC_A), RALT(EL_S), RALT(EL_E), RALT(EL_N), RALT(KC_G),                     RALT(EL_L), RALT(EL_R), RALT(EL_T),    RALT(EL_I), RALT(EL_U),        KC_END,
-        //|--------+-----------+-----------+-----------+-----------+-----------|                    |----------+-----------+-----------+--------------+-----------+--------------|
-            KC_LGUI, RALT(EL_Z), RALT(EL_X), RALT(KC_C), RALT(EL_V), RALT(EL_B),                     RALT(KC_N), RALT(EL_H), RALT(EL_G), RALT(EL_COMM), RALT(EL_K),        KC_DEL,
-        //|--------+ ----------+-----------+-----------+-----------+-----------+--------|  ---------+----------+-----------+-----------+--------------+-----------+--------------|
-                                                            KC_TRNS,     KC_ESC,  KC_SPC,    KC_TRNS,    KC_ENT,    KC_TRNS
-                                             //`----------------------------------------'  `-------------------------------'
-        ),
 
     [_SYMB_NUM] = LAYOUT_split_3x6_3( // 2
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_PAST, KC_LPRN, KC_RPRN, KC_TRNS,
+              TO(0), KC_EXLM,  QMK_GO,  QMK_GC,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_PAST, KC_LPRN, KC_RPRN, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-              TO(0),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_CALC,
+              TO(0),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-            KC_TRNS, C(KC_Z),C(EL_X),C(KC_INS),S(KC_INS),   KC_M,                         KC_N, KC_PPLS, KC_PMNS,  KC_DOT, KC_PSLS,  KC_DEL,
+            KC_TRNS, C(KC_Z),C(EL_X),C(KC_INS),S(KC_INS),   KC_M,                         KC_N, KC_PPLS, KC_PMNS,  KC_DOT, KC_PSLS, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_TRNS, KC_TRNS, LT(3,KC_BSPC),    KC_TRNS, KC_TRNS, KC_TRNS
-                                        //`------------------------------'  `--------------------------'
+                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,  OSL(3), KC_TRNS
+                                            //`--------------------------'  `--------------------------'
         ),
 
     [_NAV_NUM] = LAYOUT_split_3x6_3( // 3
         //|--------+--------+--------+--------+--------+--------|                    |--------+------+------+------+--------+--------|
-             KC_TAB, KC_CAPS, KC_HOME,   KC_UP,  KC_END, KC_PGUP,                      KC_PMNS,  KC_7,  KC_8,  KC_9, KC_PAST, KC_TRNS,
+              TO(0), KC_CAPS, KC_HOME,   KC_UP,  KC_END, KC_PGUP,                      KC_PMNS,  KC_7,  KC_8,  KC_9, KC_PAST, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+------+------+------+--------+--------|
-            KC_TRNS,  KC_TAB, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,  KC_4,  KC_5,  KC_6,    KC_0, KC_CALC,
+              TO(0),  KC_TAB, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                      KC_PPLS,  KC_4,  KC_5,  KC_6,    KC_0, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------|                    |--------+------+------+------+--------+--------|
-            KC_TRNS, KC_WBAK, KC_PSCR,  KC_ESC,  KC_INS, KC_WFWD,                         KC_N,  KC_1,  KC_2,  KC_3,  KC_DOT,  KC_DEL,
+            KC_TRNS, KC_WBAK, KC_PSCR,  KC_ESC,  KC_INS, KC_WFWD,                         KC_N,  KC_1,  KC_2,  KC_3,  KC_DOT, KC_TRNS,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+------+------+------+--------+--------|
-                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_DEL , KC_PSLS, KC_TRNS
+                                                KC_TRNS, KC_TRNS, KC_TRNS,    KC_DEL ,  OSL(3), KC_TRNS
                                             //`--------------------------'  `--------------------------'
+        ),
+
+    [_ALTGR] = LAYOUT_split_3x6_3( // 1
+        //|--------+-----------+-----------+-----------+-----------+-----------|                    |----------+-----------+-----------+--------------+-----------+--------|
+            KC_TRNS, RALT(EL_Q), RALT(EL_C), RALT(EL_O), RALT(KC_R), RALT(KC_T),                     RALT(EL_J), RALT(EL_M), RALT(EL_D),    RALT(KC_O), RALT(EL_Y), KC_TRNS,
+        //|--------+-----------+-----------+-----------+-----------+-----------|                    |----------+-----------+-----------+--------------+-----------+--------|
+            KC_TRNS, RALT(KC_A), RALT(EL_S), RALT(EL_E), RALT(EL_N), RALT(KC_G),                     RALT(EL_L), RALT(EL_R), RALT(EL_T),    RALT(EL_I), RALT(EL_U), KC_CALC,
+        //|--------+-----------+-----------+-----------+-----------+-----------|                    |----------+-----------+-----------+--------------+-----------+--------|
+            KC_TRNS, RALT(EL_Z), RALT(EL_X), RALT(KC_C), RALT(EL_V), RALT(EL_B),                     RALT(KC_N), RALT(EL_H), RALT(EL_G), RALT(EL_COMM), RALT(EL_K), S(KC_DEL),
+        //|--------+ ----------+-----------+-----------+-----------+-----------+--------|  ---------+----------+-----------+-----------+--------------+-----------+--------|
+                                                            KC_TRNS,     KC_ESC,  KC_SPC,    KC_TRNS,    KC_ENT,    KC_TRNS
+                                             //`----------------------------------------'  `-------------------------------'
         ),
 
     [_MIR_FUNC] = LAYOUT_split_3x6_3( // 4
