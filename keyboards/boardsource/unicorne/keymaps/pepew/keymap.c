@@ -273,30 +273,32 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         if (get_highest_layer(layer_state) == _MIR_FUNC) {
-            oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
+            oled_write_raw_P(ergo_l_logo_base, sizeof(ergo_l_logo_base));
         } else {
             render_layer_state();
         }
     } else {
         switch (get_highest_layer(layer_state)) {
             case _BASE:
-            case _ALTGR:
-                oled_write_raw_P(ergol_logo_base_img, sizeof(ergol_logo_base_img));
+                oled_write_raw_P(ergo_l_logo_base, sizeof(ergo_l_logo_base));
                 break;
             case _SYMB_NUM:
-                oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
+                oled_write_raw_P(ergo_l_logo_numrow, sizeof(ergo_l_logo_numrow));
                 break;
             case _NAV_NUM:
-                oled_write_raw_P(ergol_logo_navnum_img, sizeof(ergol_logo_navnum_img));
+                oled_write_raw_P(ergo_l_logo_navnum, sizeof(ergo_l_logo_navnum));
+                break;
+            case _ALTGR:
+                oled_write_raw_P(ergo_l_logo_symbol, sizeof(ergo_l_logo_symbol));
                 break;
             case _MIR_FUNC:
-                oled_write_raw_P(ergol_logo_symbols_img, sizeof(ergol_logo_symbols_img));
+                oled_write_raw_P(ergo_l_logo_mir_func, sizeof(ergo_l_logo_mir_func));
                 break;
             case _MOUSE_NAV:
-                oled_write_raw_P(ergol_logo_navnum_img, sizeof(ergol_logo_navnum_img));
+                oled_write_raw_P(ergo_l_logo_mouse, sizeof(ergo_l_logo_mouse));
                 break;
             case _BOOT_RGB:
-                oled_write_raw_P(ergol_logo_bootrgb_img, sizeof(ergol_logo_bootrgb_img));
+                oled_write_raw_P(ergo_l_logo_bootrgb, sizeof(ergo_l_logo_bootrgb));
                 break;
         }
     }
