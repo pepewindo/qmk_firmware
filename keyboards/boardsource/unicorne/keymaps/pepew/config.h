@@ -9,6 +9,10 @@
 #define SPLIT_MAX_CONNECTION_ERRORS 30
 #define SPLIT_CONNECTION_CHECK_TIMEOUT 500
 
+// Startup Song (overrides Default)
+#define STARTUP_SONG SONG(GUITAR_SOUND)
+
+
 // Don't let my OLEDs burn in
 #define SPLIT_OLED_ENABLE
 #define OLED_FADE_OUT
@@ -19,7 +23,7 @@
 #define TAPPING_TERM_PER_KEY
 #define QUICK_TAP_TERM 150
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-#define FLOW_TAP_TERM 150
+#define FLOW_TAP_TERM 250
 // #define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_INVERT_ON_SHIFT
