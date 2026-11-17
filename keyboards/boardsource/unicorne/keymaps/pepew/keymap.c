@@ -272,11 +272,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        if (get_highest_layer(layer_state) == _MIR_FUNC) {
-            oled_write_raw_P(ergo_l_logo_base, sizeof(ergo_l_logo_base));
-        } else {
-            render_layer_state();
-        }
+        render_layer_state();
     } else {
         switch (get_highest_layer(layer_state)) {
             case _BASE:
